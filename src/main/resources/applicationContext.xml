@@ -31,8 +31,16 @@ http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	
 	<!-- 基于注解的事务管理 -->
 	<tx:annotation-driven transaction-manager="dataSourceTransactionManager" />
+	
+	
+	<!-- 
+	  MyBatis-Plus 的集成非常简单，对于Spring,我们仅仅需要把 MyBatis 自带的MybatisSqlSessionBean 替换成Mp自带即可
+	      原版:org.mybatis.spring.SqlSessionFactoryBean
+	  MyBatis-Plus 版：
+     -->
+	
 	<!-- 配置 SqlSessionFactoryBean -->
-	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactoryBean" class="com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean">
 		<!-- 数据源 -->
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation"
