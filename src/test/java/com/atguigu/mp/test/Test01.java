@@ -1,5 +1,6 @@
 package com.atguigu.mp.test;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.atguigu.mp.beans.Employee;
 import com.atguigu.mp.mapper.EmployeeMapper;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 
 public class Test01 {
@@ -111,4 +113,38 @@ public class Test01 {
 		System.out.println(emps);
 	} 
 	
+	/**
+	 * 通用删除
+	 */
+	@Test
+	public void delete() {
+		
+		//根据主键来删除
+		employeeMapper.deleteById(12);
+		
+//		//根据主键的集合来删 sql是用in
+//		employeeMapper.deleteBatchIds(Arrays.asList(11,12));
+		
+//		//根据Map的列的属性符合来删除 如果该Map为空 就全删除了; 
+//		Map<String,Object> columnMap = new HashMap<>();
+//		columnMap.put("age", 15);
+//		Integer result = employeeMapper.deleteByMap(columnMap);
+//		System.out.println(result);
+	}
+	
+	/**
+	 * 需求：查询姓名为张三。性别为男，年龄在22到35岁之间的数据，要求分页
+	 * Wrapper这个类似于QBC查询 只是不需要用逆向工程也能用了 还是很不错的
+	 */
+	@Test
+	public void testSelectWrapper() {
+		
+		List<Employee> emps = employeeMapper.selectPage(
+				new Page<Employee>(1, 2), new EntityWrapper<Employee>()
+				.eq("last_name", "张三")
+				.between("age", 22, 35)
+				.eq("gender", 1)
+				);
+		System.out.println(emps);
+	}
 }
