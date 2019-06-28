@@ -53,6 +53,23 @@ public class Test01 {
 		System.out.println(result);
 	}
 	
+	@Test
+	public void update() {
+		
+		Employee employee = new Employee();
+		employee.setId(1);
+//		employee.setLastName("Tom-Update");
+//		//有哪个属性就改哪个属性，没有的属性不修改,id必须传
+//		Integer result = employeeMapper.updateById(employee);
+		
+		employee.setAge(100);
+		employee.setLastName("Tom-Update2");
+		//没有的属性设为null
+		Integer result = employeeMapper.updateAllColumnById(employee);
+		
+		System.out.println(result);
+	}
+	
 	
 	
 }
