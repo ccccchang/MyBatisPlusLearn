@@ -1,7 +1,13 @@
 package com.atguigu.mp.beans;
 
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
+
+@TableName("tbl_employee")
 public class Employee {
 
+	@TableId(value="id",type=IdType.AUTO)
 	private Integer id;
 	private String lastName;
 	private String email;

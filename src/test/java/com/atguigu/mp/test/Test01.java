@@ -26,6 +26,9 @@ public class Test01 {
 	
 	/**
 	 * 测试插入
+	 * 
+	 * 出现的异常1：没有在类上标注id生成策略 使用@TableId(type = IdType.Auto)
+	 * 出现的异常2：没有标注表的名字，默认是类名第一个字母小写，使用@TableName("tbl_employee")
 	 */
 	@Test
 	public void insert() {
