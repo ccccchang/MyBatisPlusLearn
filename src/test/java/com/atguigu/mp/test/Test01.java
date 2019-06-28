@@ -1,5 +1,9 @@
 package com.atguigu.mp.test;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.sql.DataSource;
 
 import org.junit.Test;
@@ -8,6 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.atguigu.mp.beans.Employee;
 import com.atguigu.mp.mapper.EmployeeMapper;
+import com.baomidou.mybatisplus.plugins.Page;
 
 public class Test01 {
 
@@ -25,6 +30,7 @@ public class Test01 {
 	}
 	
 	/**
+	 * 通用插入
 	 * 测试插入
 	 * 
 	 * 出现的异常1：没有在类上标注id生成策略 使用@TableId(type = IdType.Auto)
@@ -53,6 +59,9 @@ public class Test01 {
 		System.out.println(result);
 	}
 	
+	/**
+	 * 通用更新
+	 */
 	@Test
 	public void update() {
 		
@@ -70,6 +79,36 @@ public class Test01 {
 		System.out.println(result);
 	}
 	
-	
+	/**
+	 * 通用查询
+	 */
+	@Test
+	public void select() {
+//		//根据id来查 单个
+//		Employee emp = employeeMapper.selectById(1);
+//		System.out.println(emp);
+		
+//		Employee employee = new Employee();
+//		employee.setAge(100);
+//		employee.setLastName("Tom-Update2");
+//		//根据传入的对象的属性来查询，只能查一个
+//		Employee emp = employeeMapper.selectOne(employee);
+//		System.out.println(emp);
+		
+//		//查询多个 根据id的集合来查
+//		List<Employee> emps = employeeMapper.selectBatchIds(Arrays.asList(1,2,3,4,5));
+//		System.out.println(emps);
+		
+//		Map<String,Object> columnMap = new HashMap<>();
+//		columnMap.put("last_name", "张三");
+//		columnMap.put("age", "15");
+//		//查询多个 根据列名的Map来查
+//		List<Employee> emps = employeeMapper.selectByMap(columnMap);
+//		System.out.println(emps);
+		
+		//分页查询，RowBound 可以用Page来实现 Page继承了它 Wrapper先不管 内存分页
+		List<Employee> emps = employeeMapper.selectPage(new Page<Employee>(2, 2),null);
+		System.out.println(emps);
+	} 
 	
 }
