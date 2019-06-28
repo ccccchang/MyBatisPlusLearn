@@ -47,10 +47,23 @@ http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 			value="classpath:mybatis-config.xml"></property>
 		<!-- 别名处理 -->
 		<property name="typeAliasesPackage" value="com.atguigu.mp.beans"></property>
+		<property name="globalConfig" ref="globalConfiguration"></property>
 	</bean>
 	
 	<!-- 配置 mybatis 扫描 mapper 接口的路径 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.atguigu.mp.mapper"></property>
 	</bean>
+	
+	<!-- 注意 要在sqlSessionBean那里引用 不然不会生效 -->
+	<!-- 配置MP的全局策略 -->
+	<bean id="globalConfiguration" class="com.baomidou.mybatisplus.entity.GlobalConfiguration">
+		<!-- idType是主键生成策略 0是mysql的自增 -->
+		<property name="idType" value="0"></property>
+		<!-- 开启驼峰命名法，默认是true -->
+		<property name="dbColumnUnderline" value="true"></property>
+		<!-- 设置表前缀 -->
+		<property name="tablePrefix" value="tbl_"></property>
+	</bean>
+	
 </beans>
