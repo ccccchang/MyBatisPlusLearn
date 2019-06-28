@@ -1,13 +1,22 @@
 package com.atguigu.mp.beans;
 
 import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 
-@TableName("tbl_employee")
+/**
+ * @TableName 
+ *   value :指定表名 默认是实体类的类名小写 
+ *
+ */
+//@TableName("tbl_employee")
 public class Employee {
 
-	@TableId(value="id",type=IdType.AUTO)
+	/**
+	 * @TableId:
+	 * 	value 指定表中主键的列名
+	 *  type 指定主键生成策略
+	 */
+	//@TableId(value="id",type=IdType.AUTO)
 	private Integer id;
 	private String lastName;
 	private String email;
