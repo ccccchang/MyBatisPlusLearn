@@ -133,6 +133,7 @@ public class Test01 {
 	}
 	
 	/**
+	 * 条件构造器 查询
 	 * 需求：查询姓名为张三。性别为男，年龄在22到35岁之间的数据，要求分页
 	 * Wrapper这个类似于QBC查询 只是不需要用逆向工程也能用了 还是很不错的
 	 */
@@ -147,4 +148,26 @@ public class Test01 {
 				);
 		System.out.println(emps);
 	}
+	
+	/**
+	 * 条件构造器 update
+	 * 将last_name为张三，gender为1，年龄大于26岁的人 换成我们写的employee对象
+	 */
+	@Test
+	public void testUpdateWrapper() {
+		
+		Employee employee = new Employee();
+		employee.setAge(18);
+		employee.setLastName("恶魔");
+		employee.setGender(0);
+		
+		Integer result = employeeMapper.update(employee, 
+				new EntityWrapper<Employee>()
+				.eq("last_name", "张三")
+				.eq("gender", 1)
+				.gt("age", 26)
+			);
+		System.out.println(result);
+	}
+	
 }
