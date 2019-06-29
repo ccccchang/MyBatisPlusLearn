@@ -170,4 +170,18 @@ public class Test01 {
 		System.out.println(result);
 	}
 	
+	/**
+	 * 条件构造器 删除 
+	 * 删除名字中有三的，年龄大于等于26岁的男性
+	 */
+	@Test
+	public void insertSelectWrapper() {
+		Integer result = employeeMapper.delete(new EntityWrapper<Employee>()
+				.like("last_name", "三")
+				.ge("age", 26)
+				.eq("gender", 1)
+				);
+		System.out.println(result);
+	}
+	
 }
